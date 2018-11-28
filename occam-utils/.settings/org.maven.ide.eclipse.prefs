@@ -1,0 +1,8 @@
+#Wed Oct 02 23:56:07 CEST 2013
+activeProfiles=occam
+eclipse.preferences.version=1
+fullBuildGoals=process-test-resources
+resolveWorkspaceProjects=true
+resourceFilterGoals=process-resources resources\:testResources
+skipCompilerPlugin=true
+version=1
