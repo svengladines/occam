@@ -19,7 +19,7 @@
   		<datanucleus.appengine-version>2.1.2</datanucleus.appengine-version>
   		<datanucleus.jpa.version>3.1.2</datanucleus.jpa.version>
   		<hibernate-jpa-api-version>1.0.1.Final</hibernate-jpa-api-version>
-  	 	<spring-data-jpa-version>1.2.0.RELEASE</spring-data-jpa-version>
+  	 	<spring-data-jpa-version>1.11.23.RELEASE</spring-data-jpa-version>
   	 	<hibernate-version>4.1.3.Final</hibernate-version>
   	</properties>
 
