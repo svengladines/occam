@@ -13,13 +13,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Client {
 	
@@ -394,6 +390,42 @@ public class Client {
 	public static ResponseEntity<String> getHTML( String url, String... variables ) {
 		
 		return getHTML( url, null, variables );
+		
+	} 
+	
+	@SuppressWarnings("unchecked")
+	public static <T> ResponseEntity<T> postFormURLEncoded( String url, Class<T> type, MultiValueMap<String, Object> fields, Map<String,String> headers, String... variables ) {
+		
+		logger.debug( "POST request with form data at url [{}]", url );
+		
+		HttpHeaders headrs 
+			= new HttpHeaders();
+		
+		headrs.set( "Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE );
+		headrs.set( "Accept", MediaType.ALL_VALUE );
+		
+
+	    if ( headers != null ) {
+	    	
+	    	 for ( String header : headers.keySet() ) {
+	 	    	headrs.set( header , headers.get( header ) );
+	 	    }
+	    	
+	    }
+	    
+	    @SuppressWarnings("rawtypes")
+		HttpEntity<MultiValueMap> entity 
+	    	= new HttpEntity<MultiValueMap>( fields );
+		
+		ResponseEntity<T> postResponse 
+			= restTemplate().exchange(
+				url,
+				HttpMethod.POST,
+				entity,
+				(Class<T>) type,
+				(Object[]) variables );
+		
+		return postResponse;
 		
 	} 
 	

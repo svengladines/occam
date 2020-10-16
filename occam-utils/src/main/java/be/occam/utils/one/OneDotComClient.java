@@ -47,6 +47,20 @@ public class OneDotComClient {
 		
 	}
 	
+	public String retrieve( String path ) {
+		
+		StringBuilder cookies
+			= new StringBuilder();
+		
+		this.login( this.domain, this.userName, this.passWord, cookies );
+		
+		ResponseEntity<String> response 
+			= this.get( path, this.commonHeaders(), cookies );
+		
+		return response.getBody();
+		
+	}
+	
 	protected void login( String domain, String userName, String passWord, StringBuilder cookies ) {
 		
 		try {
@@ -168,7 +182,13 @@ public class OneDotComClient {
 	
 	}
 
-	protected ResponseEntity<String> get( String url, Map<String,String> headers, StringBuilder cookies ) {
+	protected ResponseEntity<String> get( String path, Map<String,String> headers, StringBuilder cookies ) {
+	
+		String base
+			= String.format( "https://filemanager.one.com/api/webspace/2/drive/%s/data/httpd.www", domain );
+	
+		String url
+			= new StringBuilder( base ).append( path ).toString();
 	
 		HttpHeaders headrs 
 			= new HttpHeaders();
