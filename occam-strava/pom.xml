@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>be.occam</groupId>
+    <artifactId>occam-parent-pom</artifactId>
+    <version>1.0-LATEST-SNAPSHOT</version>
+  </parent>
+  <groupId>be.occam</groupId>
+  <artifactId>occam-strava</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>occam-strava</name>
+  <description>occam-strava</description>
+  
+  <dependencies>
+  
+  		<!-- for building strava api -->
+  		<dependency>
+    		<groupId>com.google.code.gson</groupId>
+    		<artifactId>gson</artifactId>
+    		<version>2.8.2</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>io.gsonfire</groupId>
+    		<artifactId>gson-fire</artifactId>
+    		<version>1.8.3</version>
+		</dependency>
+  
+  		<dependency>
+    		<groupId>com.squareup.okhttp</groupId>
+    		<artifactId>okhttp</artifactId>
+    		<version>2.7.5</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.squareup.okhttp</groupId>
+    		<artifactId>logging-interceptor</artifactId>
+    		<version>2.7.5</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.9</version>
+		</dependency>
+		
+		<dependency>
+		 	<groupId>io.swagger</groupId>
+    		<artifactId>swagger-annotations</artifactId>
+    		<version>1.5.17</version>
+    	</dependency>
+  
+  </dependencies>
+  
+  <build>
+		<plugins>
+			<plugin>
+			    <groupId>io.swagger</groupId>
+			    <artifactId>swagger-codegen-maven-plugin</artifactId>
+			    <version>2.3.1</version>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <goal>generate</goal>
+			            </goals>
+			            <configuration>
+			                <inputSpec>https://developers.strava.com/swagger/swagger.json</inputSpec>
+			                <language>java</language>
+			                <generateApiDocumentation>false</generateApiDocumentation>
+			                <generateModelDocumentation>false</generateModelDocumentation>
+			                <configOptions>
+			                   <sourceFolder>main/java</sourceFolder>
+			                   <modelPackage>com.strava</modelPackage>
+			                   <apiPackage>com.strava.api</apiPackage>
+                               <dateLibrary>joda</dateLibrary>
+			                </configOptions>
+			            </configuration>
+			        </execution>
+	    		</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
