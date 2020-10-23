@@ -339,5 +339,9 @@ public class Stravanticator {
 		}
 		
 	}
+
+	public void setTokenRepository(TokenRepository tokenRepository) {
+		this.tokenRepository = tokenRepository;
+	}
 	
 }

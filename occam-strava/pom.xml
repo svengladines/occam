@@ -7,7 +7,7 @@
   </parent>
   <groupId>be.occam</groupId>
   <artifactId>occam-strava</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0-LATEST-SNAPSHOT</version>
   <name>occam-strava</name>
   <description>occam-strava</description>
   
